@@ -1,0 +1,12 @@
+{
+  "name": "noluca.github.io",
+  "private": true,
+  "description": "Portfolio di Luca Notarantonio. Il sito non ha build: npm serve solo a installare e copiare il motore Asciify.",
+  "scripts": {
+    "vendor": "node scripts/vendor-asciify.mjs",
+    "serve": "npx --yes serve -l 8080 ."
+  },
+  "dependencies": {
+    "asciify-engine": "4.33.0"
+  }
+}

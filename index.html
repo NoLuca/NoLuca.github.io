@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luca Notarantonio · portfolio</title>
+  <meta name="description" content="Il portfolio online di Luca Notarantonio: reti, server, cloud e progetti personali (homelab TrueNAS, Docker, Oracle Cloud, AI locale).">
+  <meta name="author" content="Luca Notarantonio">
+  <meta property="og:title" content="Luca Notarantonio · portfolio">
+  <meta property="og:description" content="Reti, server, cloud e progetti personali, in stile terminale.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#1f1f1f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231f1f1f'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='20' fill='%23ffb000'%3E%3E_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#chi-sono">Vai al contenuto</a>
+
+  <!-- Schermata di avvio (si salta con un clic o un tasto) -->
+  <div id="boot" class="boot" aria-hidden="true" hidden>
+    <pre id="boot-log"></pre>
+    <p class="boot-skip">premi un tasto o clicca per saltare</p>
+  </div>
+
+  <header class="topbar">
+    <a class="prompt" href="#top" aria-label="Torna all'inizio"><span class="p-user">luca</span>@<span class="p-host">noluca</span>:<span class="p-path" id="p-path">~</span>$</a>
+    <nav class="nav" aria-label="Sezioni">
+      <a href="#chi-sono">chi-sono</a>
+      <a href="#progetti">progetti</a>
+      <a href="#percorso">percorso</a>
+      <a href="#competenze">competenze</a>
+      <a href="#contatti">contatti</a>
+    </nav>
+    <div class="tools">
+      <button id="btn-term" class="btn" type="button" title="Apri il terminale (tasto \ o `)">&gt;_ terminale</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ VISTA PRINCIPALE ============ -->
+    <div id="view-home">
+
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas class="hero-bg" id="hero-bg" aria-hidden="true"></canvas>
+        <h1 id="hero-title" class="sr-only">Luca Notarantonio, tecnico sistemista junior</h1>
+        <pre class="banner" aria-hidden="true" id="banner"></pre>
+        <p class="typed"><span class="dim">&gt;</span> <span id="typed"></span><span class="cursor" aria-hidden="true">█</span></p>
+
+        <div class="neofetch">
+          <pre class="rack" aria-hidden="true" id="rack"></pre>
+          <div class="nf-info">
+            <p class="nf-title"><span class="acc">luca</span>@<span class="acc">noluca</span></p>
+            <p class="dim" aria-hidden="true">───────────</p>
+            <dl id="neofetch"></dl>
+            <p class="swatches" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></p>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#chi-sono" aria-label="Scorri al contenuto"><span aria-hidden="true">▼ scorri ▼</span></a>
+      </section>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <section id="chi-sono" class="section" aria-labelledby="h-chi">
+        <h2 id="h-chi" class="cmd"><span class="ps">$</span> cat chi-sono.txt</h2>
+        <div class="box">
+          <span class="box-title">chi-sono.txt</span>
+          <div id="chi-sono-text" class="prose"></div>
+        </div>
+      </section>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <section id="progetti" class="section" aria-labelledby="h-prog">
+        <h2 id="h-prog" class="cmd"><span class="ps">$</span> ls ~/progetti <span class="dim">--filtra</span></h2>
+        <p class="hint">Il codice dei progetti è privato: qui trovi cosa fanno, come li ho costruiti e gli schemi. Clicca un progetto per i dettagli.</p>
+        <div class="filters" role="group" aria-label="Filtra per tecnologia" id="filters"></div>
+        <div id="project-groups"></div>
+        <div class="box school">
+          <span class="box-title">~/scuola · repository pubblici</span>
+          <ul id="school" class="school-list"></ul>
+        </div>
+      </section>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <section id="percorso" class="section" aria-labelledby="h-perc">
+        <h2 id="h-perc" class="cmd"><span class="ps">$</span> git log --graph --oneline <span class="dim">~/percorso</span></h2>
+        <p class="hint">Clicca un commit per vedere i dettagli.</p>
+        <ol id="gitlog" class="gitlog"></ol>
+      </section>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <section id="competenze" class="section" aria-labelledby="h-comp">
+        <h2 id="h-comp" class="cmd"><span class="ps">$</span> tree ~/competenze</h2>
+        <div class="filters" role="group" aria-label="Evidenzia una categoria" id="skill-tabs"></div>
+        <div class="skills">
+          <figure class="globe-wrap">
+            <div class="globe" id="globe" aria-hidden="true">
+              <pre class="globe-grid" id="globe-grid"></pre>
+              <div class="globe-words" id="globe-words"></div>
+            </div>
+            <figcaption class="hint">↔ trascina per girare il globo</figcaption>
+          </figure>
+          <div class="tree" id="tree"></div>
+        </div>
+      </section>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <section id="contatti" class="section" aria-labelledby="h-cont">
+        <h2 id="h-cont" class="cmd"><span class="ps">$</span> cat contatti.txt</h2>
+        <div class="box contact">
+          <span class="box-title">contatti.txt</span>
+          <dl class="contact-list" id="contact-list"></dl>
+          <div class="contact-actions" id="contact-actions"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ VISTA DETTAGLIO PROGETTO ============ -->
+    <article id="view-project" class="section project-view" hidden aria-live="polite"></article>
+  </main>
+
+  <footer class="footer">
+    <p class="dim">© <span id="year"></span> Luca Notarantonio</p>
+  </footer>
+
+  <!-- ============ TERMINALE ============ -->
+  <div id="term" class="term" hidden role="dialog" aria-label="Terminale" aria-modal="false">
+    <div class="term-bar">
+      <span>luca@noluca: ~ <span class="dim">· scrivi "help"</span></span>
+      <button class="btn" id="term-close" type="button" aria-label="Chiudi il terminale">[x]</button>
+    </div>
+    <pre class="term-out" id="term-out" aria-live="polite"></pre>
+    <form class="term-in" id="term-form" autocomplete="off">
+      <label for="term-input" class="term-ps">luca@noluca:~$</label>
+      <input id="term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Comando">
+    </form>
+  </div>
+
+  <!-- Barra di stato, come quella di VS Code -->
+  <div class="statusbar" aria-hidden="true">
+    <span class="sb-item sb-branch">⎇ main</span>
+    <span class="sb-item" id="sb-ver"></span>
+    <span class="sb-item sb-ok">✓ 0 problemi</span>
+    <span class="sb-spacer"></span>
+    <span class="sb-item sb-wide" id="sb-ln">Ln 1, Col 1</span>
+    <span class="sb-item sb-wide">UTF-8</span>
+    <span class="sb-item sb-wide">LF</span>
+    <span class="sb-item sb-wide">{ } HTML</span>
+    <button class="sb-item sb-btn" id="sb-term" type="button" tabindex="-1">&gt;_ terminale</button>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/ascii/arts.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
